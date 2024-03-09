@@ -50,5 +50,123 @@
 
 .drug {
     width: 200px;
-    height: 100px;
+    height: 190px;
+}
+
+.drug img {
+    max-width: 100%;
+    /* max-height: 200%; */
+}
+
+.drug .medicineName {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.drug p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.drug .medicinePrice {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shoping,
+.shoppingCart {
+    cursor: pointer;
+}
+
+.cart {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartForm,
+.cartItems {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 10px;
+    width: 50%;
+}
+
+.cartForm label,
+.cartForm input {
+    display: block;
+    width: 90%;
+}
+
+.cartForm label {
+    font-size: 0.8rem;
+}
+
+.cartForm input {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 5px;
+}
+
+.cartItem {
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 5px;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartItem img,
+.cartItemInfo {
+    width: 50%;
+}
+
+.cartItemInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px;
+    text-align: center;
+}
+
+.cartItemInfo h3 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.cartItemInfo p {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.cartItemInfo input {
+    padding: 5px;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 5px;
+}
+
+.cartSummary {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.cartSummary p {
+    margin: 5px 50px 5px 5px;
+}
+
+.cartSummary button {
+    padding: 5px 20px 5px 20px;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
 }

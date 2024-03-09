@@ -1,38 +1,15 @@
-import Drug from './Drug'
+import Drug from './Drug';
 
-export default function Medicines() {
+export default function Medicines({ medicines, onAddToCart }) {
     return (
         <div className="medicines">
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
-            <Drug />
+            {medicines.map((medicine) => (
+                <Drug
+                    medicine={medicine}
+                    key={medicine._id}
+                    onAddToCart={onAddToCart}
+                />
+            ))}
         </div>
-    )
+    );
 }

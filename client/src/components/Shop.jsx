@@ -1,3 +1,11 @@
-export default function Shop({ name = 'etc.' }) {
-    return <div className="shop">{name}</div>
+export default function Shop({ shop, onChangeShop, onNeedAddMedicine }) {
+    return (
+        <div
+            className="shop"
+            onClick={() => onChangeShop(shop)}
+            onDoubleClick={() => onNeedAddMedicine()}
+        >
+            {shop.title}
+        </div>
+    );
 }

@@ -1,13 +1,16 @@
-import Shop from './Shop'
+import Shop from './Shop';
 
-export default function Shops() {
+export default function Shops({ shops, onChangeShop, onNeedAddMedicine }) {
     return (
         <div className="shops">
-            <Shop name="Drug 24" />
-            <Shop name="Pharmacy" />
-            <Shop />
-            <Shop />
-            <Shop />
+            {shops.map((shop) => (
+                <Shop
+                    shop={shop}
+                    key={shop._id}
+                    onChangeShop={onChangeShop}
+                    onNeedAddMedicine={onNeedAddMedicine}
+                />
+            ))}
         </div>
-    )
+    );
 }
