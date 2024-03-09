@@ -1,0 +1,54 @@
+.header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header p {
+    margin: 5px;
+    padding: 10px;
+    color: rgb(105, 196, 248);
+}
+
+.header p:first-of-type {
+    border-right: 2px solid rgb(83, 83, 83);
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shops,
+.medicines {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 10px;
+    display: flex;
+}
+
+.shops {
+    width: 20%;
+    flex-direction: column;
+}
+
+.medicines {
+    width: 80%;
+    height: calc(100vh - 90px);
+    overflow-y: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.shop,
+.drug {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 10px;
+}
+
+.drug {
+    width: 200px;
+    height: 100px;
+}
