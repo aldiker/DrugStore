@@ -37,7 +37,7 @@
     height: calc(100vh - 90px);
     overflow-y: auto;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    align-content: flex-start;
 }
 
 .shop,
@@ -95,7 +95,7 @@
 .cartForm label,
 .cartForm input {
     display: block;
-    width: 90%;
+    width: 95%;
 }
 
 .cartForm label {
@@ -111,13 +111,21 @@
     border-radius: 5px;
 }
 
+.cartItems {
+    height: calc(100vh - 170px);
+    overflow-y: auto;
+}
+
+.cartItems input {
+    width: 95%;
+}
+
 .cartItem {
     margin-bottom: 20px;
     padding: 5px;
     border: 1px solid rgb(83, 83, 83);
     border-radius: 5px;
-    width: 100%;
-    height: max-content;
+    width: 95%;
     display: flex;
     justify-content: space-between;
 }
