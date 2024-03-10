@@ -203,6 +203,7 @@ export default function App() {
                             medicines={medicines}
                             onAddToCart={handleAddToCart}
                             onMedicideFavorite={handleMedicineFavorite}
+                            cart={cart}
                         />
                     </Main>
                 </>

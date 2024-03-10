@@ -1,4 +1,12 @@
-export default function Drug({ medicine, onAddToCart, onMedicideFavorite }) {
+export default function Drug({
+    medicine,
+    onAddToCart,
+    onMedicideFavorite,
+    cart,
+}) {
+    const index = cart.findIndex((item) => item._id === medicine._id)
+    const isInCart = index !== -1
+
     return (
         <div className="drug">
             <img src={medicine.img} alt={medicine.title} />
@@ -8,17 +16,19 @@ export default function Drug({ medicine, onAddToCart, onMedicideFavorite }) {
                 <p>
                     Price: <span>{medicine.price} $</span>
                 </p>
-                {/* <p>{medicine.enabled ? 💝 : ''}</p> */}
                 <p
                     className="drug_favorite"
                     onClick={() => onMedicideFavorite(medicine)}
                 >
                     {medicine?.enabled ? '💝' : '♡'}
                 </p>
-                <button onClick={() => onAddToCart(medicine)}>
+                <button
+                    onClick={() => onAddToCart(medicine)}
+                    className={isInCart ? 'inCart' : ''}
+                >
                     add to Cart
                 </button>
             </div>
         </div>
-    );
+    )
 }

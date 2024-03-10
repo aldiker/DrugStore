@@ -1,9 +1,10 @@
-import Drug from './Drug';
+import Drug from './Drug'
 
 export default function Medicines({
     medicines,
     onAddToCart,
     onMedicideFavorite,
+    cart,
 }) {
     return (
         <div className="medicines">
@@ -14,11 +15,12 @@ export default function Medicines({
                         key={medicine._id}
                         onAddToCart={onAddToCart}
                         onMedicideFavorite={onMedicideFavorite}
+                        cart={cart}
                     />
                 ))
             ) : (
                 <h4 style={{ textAlign: 'center' }}>Choose the Shop ...</h4>
             )}
         </div>
-    );
+    )
 }
