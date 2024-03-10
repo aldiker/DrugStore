@@ -74,8 +74,22 @@ export default function App() {
 
     function handleAddToCart(medicine) {
         setCart((currentCart) => {
-            if (!currentCart) return [medicine];
             const cartItem = { ...medicine, count: 1 };
+            if (!currentCart) return [cartItem];
+
+            const existingItemIndex = currentCart.findIndex(
+                (item) => item._id === medicine._id
+            );
+            if (existingItemIndex !== -1) {
+                const updatedCart = [...currentCart];
+                const existingItem = updatedCart[existingItemIndex];
+                updatedCart[existingItemIndex] = {
+                    ...existingItem,
+                    count: existingItem.count + 1,
+                };
+                return updatedCart;
+            }
+
             return [...currentCart, cartItem];
         });
     }
