@@ -8,7 +8,7 @@ import Shops from './components/Shops'
 import AddMedicine from './components/AddMedicine'
 import Cart from './components/Cart'
 
-function sortMedicines(a, b) {
+function sortMedicinesByFavorite(a, b) {
     // Помещаем элементы с enabled = true в начало списка
     if (a.enabled && !b.enabled) {
         return -1
@@ -55,7 +55,7 @@ export default function App() {
                 .then((response) => {
                     const allMedicines = response.data
                     const sortedMedicines = allMedicines.sort((a, b) =>
-                        sortMedicines(a, b)
+                        sortMedicinesByFavorite(a, b)
                     )
 
                     // console.log(response.data);
@@ -139,6 +139,15 @@ export default function App() {
         })
     }
 
+    function handleSortByFavorite() {
+        setMedicines((currentMedicines) => {
+            const sortedMedicines = [...currentMedicines]
+            sortedMedicines.sort((a, b) => sortMedicinesByFavorite(a, b))
+
+            return sortedMedicines
+        })
+    }
+
     function handleMedicineFavorite(medicine) {
         console.log(medicine)
         const updatedMedicineForServer = {
@@ -198,6 +207,7 @@ export default function App() {
                             onStatusReset={handleStatusReset}
                             activeShop={activeShop}
                             onSortByPrice={handleSortByPrice}
+                            onSortByFavorite={handleSortByFavorite}
                         />
                         <Medicines
                             medicines={medicines}

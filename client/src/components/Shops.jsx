@@ -1,4 +1,4 @@
-import Shop from './Shop';
+import Shop from './Shop'
 
 export default function Shops({
     shops,
@@ -6,19 +6,25 @@ export default function Shops({
     onNeedAddMedicine,
     activeShop,
     onSortByPrice,
+    onSortByFavorite,
 }) {
     return (
-        <div className="shops">
-            {shops.map((shop) => (
-                <Shop
-                    shop={shop}
-                    key={shop._id}
-                    onChangeShop={onChangeShop}
-                    onNeedAddMedicine={onNeedAddMedicine}
-                    activeShop={activeShop}
-                />
-            ))}
-            <button onClick={onSortByPrice}>sort by price</button>
+        <div className="shopsPanel">
+            <div>
+                {shops.map((shop) => (
+                    <Shop
+                        shop={shop}
+                        key={shop._id}
+                        onChangeShop={onChangeShop}
+                        onNeedAddMedicine={onNeedAddMedicine}
+                        activeShop={activeShop}
+                    />
+                ))}
+            </div>
+            <div className="sortButtons">
+                <button onClick={onSortByFavorite}>sort by favorite</button>
+                <button onClick={onSortByPrice}>sort by price</button>
+            </div>
         </div>
-    );
+    )
 }

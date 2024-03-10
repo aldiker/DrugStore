@@ -18,7 +18,7 @@
     justify-content: space-between;
 }
 
-.shops,
+.shopsPanel,
 .medicines {
     margin: 5px;
     padding: 5px;
@@ -27,17 +27,23 @@
     display: flex;
 }
 
-.shops {
+.shopsPanel {
     width: 20%;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
-.shops button:last-of-type {
+.sortButtons {
+    display: flex;
+    flex-direction: column;
+}
+
+.shopsPanel button {
     margin: 5px;
     border: 1px solid rgb(83, 83, 83);
     border-radius: 10px;
-    margin-top: auto;
+
+    /* margin-top: auto; */
 }
 
 .medicines {
