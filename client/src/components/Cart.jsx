@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import CartItem from './CartItem';
-import axios from 'axios';
+import { useState } from 'react'
+import CartItem from './CartItem'
+import axios from 'axios'
 
 export default function Cart({ cart, onCartItemCountSet, onRemoveIntoCart }) {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
+    const [statusSubmit, setStatusSubmit] = useState('')
 
-    const total = cart.reduce((acc, item) => item.count * item.price + acc, 0);
+    const total = cart.reduce((acc, item) => item.count * item.price + acc, 0)
 
     function handleSubmit() {
         const formData = {
@@ -18,19 +19,22 @@ export default function Cart({ cart, onCartItemCountSet, onRemoveIntoCart }) {
             address,
             cart,
             total,
-        };
+        }
 
         if (name && email && phone && address && total) {
             axios
                 .post('http://localhost:3000/api/cart', formData)
                 .then((response) => {
-                    console.log('Data submitted successfully:', response.data);
+                    console.log('Data submitted successfully:', response.data)
+                    setStatusSubmit('submitSuccess')
                 })
                 .catch((error) => {
-                    console.error('Error submitting data:', error);
-                });
+                    console.error('Error submitting data:', error)
+                    setStatusSubmit('submitErrorServer')
+                })
         } else {
-            console.log('Not enough information to save this cart ...');
+            console.log('Not enough information to save this cart ...')
+            setStatusSubmit('submitErrorInfo')
         }
     }
 
@@ -87,9 +91,23 @@ export default function Cart({ cart, onCartItemCountSet, onRemoveIntoCart }) {
                 </div>
             </div>
             <div className="cartSummary">
+                {statusSubmit === 'submitSuccess' ? (
+                    <p className="infoPanel success">
+                        Your cart has been successfully submitted!
+                    </p>
+                ) : statusSubmit === 'submitErrorInfo' ? (
+                    <p className="infoPanel error">
+                        Not enough information to save this cart ...
+                    </p>
+                ) : statusSubmit === 'submitErrorServer' ? (
+                    <p className="infoPanel error">Error submitting data ...</p>
+                ) : (
+                    ''
+                )}
+
                 <p>Total price: {total}</p>
                 <button onClick={handleSubmit}>Submit</button>
             </div>
         </div>
-    );
+    )
 }
