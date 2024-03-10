@@ -7,6 +7,7 @@ const app = express()
 
 const Shops = require('./models/shops')
 const Medicines = require('./models/medicines')
+const Order = require('./models/order')
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -101,6 +102,31 @@ app.get('/api/medicines/:shopId', async (req, res) => {
 	}
 })
 
+app.post('/api/cart', async (req, res) => {
+	try {
+		const formData = req.body
+		// console.log(formData)
+		const newOrder = new Order({
+			medicines: formData.cart.map((item) => ({
+				medicineId: item._id,
+				count: item.count
+			})),
+			user: {
+				name: formData.name,
+				email: formData.email,
+				phone: formData.phone,
+				address: formData.address,
+			}
+		})
+		console.log(newOrder)
+
+		const savedOrder = await newOrder.save()
+		res.status(201).json({ success: true, message: 'Order saved successfully', order: savedOrder })
+	} catch (error) {
+		console.error('Error saving the cart:', error)
+		res.status(500).json({ success: false, message: 'Server Error' })
+	}
+})
 
 async function start() {
 	try {

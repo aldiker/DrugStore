@@ -116,9 +116,9 @@
     overflow-y: auto;
 }
 
-.cartItems input {
-    width: 95%;
-}
+/* .cartItems input {
+    width: 100%;
+} */
 
 .cartItem {
     margin-bottom: 20px;
@@ -157,6 +157,24 @@
     padding: 5px;
     border: 1px solid rgb(83, 83, 83);
     border-radius: 5px;
+}
+
+.cartItemInfo_count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    max-width: 100%;
+}
+
+.cartItemInfo_count input {
+    text-align: justify;
+    max-width: 30%;
+}
+
+.cartItemInfo_count button {
+    width: fit-content;
+    max-width: 40%; /* Минимальная ширина кнопки */
 }
 
 .cartSummary {

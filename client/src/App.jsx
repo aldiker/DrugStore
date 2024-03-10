@@ -15,7 +15,9 @@ export default function App() {
     const [shops, setShops] = useState([]);
     const [activeShop, setActiveShop] = useState({});
     const [medicines, setMedicines] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(() =>
+        JSON.parse(localStorage.getItem('elifTechCart'))
+    );
 
     console.log('card');
     console.log(cart);
@@ -49,6 +51,10 @@ export default function App() {
         }
     }, [activeShop]);
 
+    useEffect(() => {
+        localStorage.setItem('elifTechCart', JSON.stringify(cart));
+    }, [cart]);
+
     function handleChangeShop(shop) {
         // console.log(shop);
         setActiveShop(shop);
@@ -73,13 +79,21 @@ export default function App() {
         });
     }
 
+    function handleRemoveIntoCart(medicine) {
+        console.log('medicine - remove into cart:');
+        console.log(medicine);
+        setCart((currentCart) =>
+            currentCart.filter((item) => item._id !== medicine._id)
+        );
+    }
+
     function handleCartItemCountSet(itemToUpdate, count) {
         console.log(itemToUpdate);
         console.log(count);
         setCart((currentCart) =>
             currentCart.map((item) => {
                 if (item._id === itemToUpdate._id) {
-                    return { ...item, count: count < 0 ? 0 : count };
+                    return { ...item, count: count ? count : 0 };
                 }
                 return item;
             })
@@ -98,7 +112,11 @@ export default function App() {
                     activeShop={activeShop}
                 />
             ) : status === 'shoppingCart' ? (
-                <Cart cart={cart} onCartItemCountSet={handleCartItemCountSet} />
+                <Cart
+                    cart={cart}
+                    onCartItemCountSet={handleCartItemCountSet}
+                    onRemoveIntoCart={handleRemoveIntoCart}
+                />
             ) : (
                 <>
                     <Main>
