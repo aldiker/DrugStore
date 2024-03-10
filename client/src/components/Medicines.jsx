@@ -1,6 +1,10 @@
 import Drug from './Drug';
 
-export default function Medicines({ medicines, onAddToCart }) {
+export default function Medicines({
+    medicines,
+    onAddToCart,
+    onMedicideFavorite,
+}) {
     return (
         <div className="medicines">
             {medicines.length > 0 ? (
@@ -9,10 +13,11 @@ export default function Medicines({ medicines, onAddToCart }) {
                         medicine={medicine}
                         key={medicine._id}
                         onAddToCart={onAddToCart}
+                        onMedicideFavorite={onMedicideFavorite}
                     />
                 ))
             ) : (
-                <h4>Choose the Shop ...</h4>
+                <h4 style={{ textAlign: 'center' }}>Choose the Shop ...</h4>
             )}
         </div>
     );

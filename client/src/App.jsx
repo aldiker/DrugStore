@@ -19,8 +19,8 @@ export default function App() {
         JSON.parse(localStorage.getItem('elifTechCart'))
     );
 
-    console.log('card');
-    console.log(cart);
+    // console.log('card');
+    // console.log(cart);
 
     useEffect(() => {
         axios
@@ -115,11 +115,51 @@ export default function App() {
         );
     }
 
+    function handleSortByPrice() {
+        setMedicines((currentMedicines) => {
+            const sortedMedicines = [...currentMedicines];
+            sortedMedicines.sort((a, b) => a.price - b.price);
+            return sortedMedicines;
+        });
+    }
+
+    function handleMedicineFavorite(medicine) {
+        console.log(medicine);
+        const updatedMedicineForServer = {
+            _id: medicine._id,
+            enabled: !medicine.enabled,
+        };
+
+        setMedicines((currentMedicines) => {
+            const updatedMedicines = currentMedicines.map((med) => {
+                if (med._id === medicine._id) {
+                    return { ...med, enabled: !med.enabled };
+                }
+                return med;
+            });
+
+            axios
+                .post(
+                    'http://localhost:3000/api/updateMedicine',
+                    updatedMedicineForServer
+                )
+                .then((response) => {
+                    console.log('Data updated successfully:', response.data);
+                })
+                .catch((error) => {
+                    console.error('Error updating data:', error);
+                });
+
+            return updatedMedicines;
+        });
+    }
+
     return (
         <div className="App">
             <Header
                 onShop={handleStatusReset}
                 onShoppingCart={handleStatusShoppingCart}
+                onSortByPrice={handleSortByPrice}
             />
             {status === 'addingMedicine' ? (
                 <AddMedicine
@@ -140,10 +180,12 @@ export default function App() {
                             onChangeShop={handleChangeShop}
                             onNeedAddMedicine={handleStatusAddMedicine}
                             onStatusReset={handleStatusReset}
+                            activeShop={activeShop}
                         />
                         <Medicines
                             medicines={medicines}
                             onAddToCart={handleAddToCart}
+                            onMedicideFavorite={handleMedicineFavorite}
                         />
                     </Main>
                 </>

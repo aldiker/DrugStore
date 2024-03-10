@@ -40,12 +40,20 @@
     align-content: flex-start;
 }
 
+.medicines h4 {
+    text-align: center;
+}
+
 .shop,
 .drug {
     margin: 5px;
     padding: 10px;
     border: 1px solid rgb(83, 83, 83);
     border-radius: 10px;
+}
+
+.active {
+    background-color: rgb(211, 245, 247);
 }
 
 .drug {

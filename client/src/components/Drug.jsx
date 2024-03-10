@@ -1,4 +1,4 @@
-export default function Drug({ medicine, onAddToCart }) {
+export default function Drug({ medicine, onAddToCart, onMedicideFavorite }) {
     return (
         <div className="drug">
             <img src={medicine.img} alt={medicine.title} />
@@ -7,6 +7,13 @@ export default function Drug({ medicine, onAddToCart }) {
             <div className="medicinePrice">
                 <p>
                     Price: <span>{medicine.price} $</span>
+                </p>
+                {/* <p>{medicine.enabled ? 💝 : ''}</p> */}
+                <p
+                    className="drug_favorite"
+                    onClick={() => onMedicideFavorite(medicine)}
+                >
+                    {medicine.enabled ? '💝' : '♡'}
                 </p>
                 <button onClick={() => onAddToCart(medicine)}>
                     add to Cart
