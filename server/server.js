@@ -134,17 +134,17 @@ app.post('/api/updateMedicine', async (req, res) => {
 		console.log(updatedMedicine)
 		console.log('This element should be updated in the database, but this has not happened yet.')
 
-		// const updatedMedicineFromDB = await Medicines.findByIdAndUpdate(
-		// 	updatedMedicine._id,
-		// 	{ enabled: updatedMedicine.enabled },
-		// 	{ new: true }
-		// )
+		const updatedMedicineFromDB = await Medicines.findByIdAndUpdate(
+			updatedMedicine._id,
+			{ enabled: updatedMedicine.enabled },
+			{ new: true }
+		)
 
-		// if (!updatedMedicineFromDB) {
-		// 	return res.status(404).json({ success: false, message: 'Medicine not found' })
-		// }
+		if (!updatedMedicineFromDB) {
+			return res.status(404).json({ success: false, message: 'Medicine not found' })
+		}
 
-		// res.status(201).json({ success: true, message: 'Medicine updated successfully', medicine: updatedMedicineFromDB })
+		res.status(201).json({ success: true, message: 'Medicine updated successfully', medicine: updatedMedicineFromDB })
 	} catch (error) {
 		console.error('Error updating Medicine:', error)
 		res.status(500).json({ success: false, message: 'Server Error' })

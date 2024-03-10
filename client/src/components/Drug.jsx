@@ -13,7 +13,7 @@ export default function Drug({ medicine, onAddToCart, onMedicideFavorite }) {
                     className="drug_favorite"
                     onClick={() => onMedicideFavorite(medicine)}
                 >
-                    {medicine.enabled ? '💝' : '♡'}
+                    {medicine?.enabled ? '💝' : '♡'}
                 </p>
                 <button onClick={() => onAddToCart(medicine)}>
                     add to Cart

@@ -17,6 +17,7 @@ export default function Shops({
                     activeShop={activeShop}
                 />
             ))}
+            <button>sort by price</button>
         </div>
     );
 }

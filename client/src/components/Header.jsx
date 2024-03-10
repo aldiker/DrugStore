@@ -1,4 +1,4 @@
-export default function Header({ onShoppingCart, onShop, onSortByPrice }) {
+export default function Header({ onShoppingCart, onShop }) {
     return (
         <div className="header">
             <p className="shoping" onClick={onShop}>
@@ -7,7 +7,6 @@ export default function Header({ onShoppingCart, onShop, onSortByPrice }) {
             <p className="shoppingCart" onClick={onShoppingCart}>
                 Shopping Cart
             </p>
-            <button onClick={onSortByPrice}>sort by price</button>
         </div>
     );
 }
