@@ -74,6 +74,7 @@ export default function App() {
 
     function handleAddToCart(medicine) {
         setCart((currentCart) => {
+            if (!currentCart) return [medicine];
             const cartItem = { ...medicine, count: 1 };
             return [...currentCart, cartItem];
         });
