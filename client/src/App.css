@@ -52,6 +52,10 @@
     text-align: center;
 }
 
+.medicines .inCart {
+    background-color: lightgreen;
+}
+
 .shop,
 .drug {
     margin: 5px;
