@@ -159,7 +159,6 @@ export default function App() {
             <Header
                 onShop={handleStatusReset}
                 onShoppingCart={handleStatusShoppingCart}
-                onSortByPrice={handleSortByPrice}
             />
             {status === 'addingMedicine' ? (
                 <AddMedicine
@@ -181,6 +180,7 @@ export default function App() {
                             onNeedAddMedicine={handleStatusAddMedicine}
                             onStatusReset={handleStatusReset}
                             activeShop={activeShop}
+                            onSortByPrice={handleSortByPrice}
                         />
                         <Medicines
                             medicines={medicines}

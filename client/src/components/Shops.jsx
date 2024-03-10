@@ -5,6 +5,7 @@ export default function Shops({
     onChangeShop,
     onNeedAddMedicine,
     activeShop,
+    onSortByPrice,
 }) {
     return (
         <div className="shops">
@@ -17,7 +18,7 @@ export default function Shops({
                     activeShop={activeShop}
                 />
             ))}
-            <button>sort by price</button>
+            <button onClick={onSortByPrice}>sort by price</button>
         </div>
     );
 }
