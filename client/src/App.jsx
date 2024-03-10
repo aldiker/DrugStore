@@ -8,6 +8,17 @@ import Shops from './components/Shops';
 import AddMedicine from './components/AddMedicine';
 import Cart from './components/Cart';
 
+function sortMedicines(a, b) {
+    // Помещаем элементы с enabled = true в начало списка
+    if (a.enabled && !b.enabled) {
+        return -1;
+    } else if (!a.enabled && b.enabled) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 export default function App() {
     // '', 'addingMedicine', 'shoppingCart'
     const [status, setStatus] = useState('');
@@ -36,14 +47,17 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        // console.log('activeShop');
-        // console.log(activeShop);
         if (activeShop._id) {
             axios
                 .get(`http://localhost:3000/api/medicines/${activeShop._id}`)
                 .then((response) => {
+                    const allMedicines = response.data;
+                    const sortedMedicines = allMedicines.sort((a, b) =>
+                        sortMedicines(a, b)
+                    );
+
                     // console.log(response.data);
-                    setMedicines(response.data);
+                    setMedicines(sortedMedicines);
                 })
                 .catch((error) => {
                     console.error('Error fetching medicines:', error);
