@@ -179,6 +179,10 @@ export default function App() {
         })
     }
 
+    function handleCartReset() {
+        setCart(() => [])
+    }
+
     return (
         <div className="App">
             <Header
@@ -196,6 +200,7 @@ export default function App() {
                     cart={cart}
                     onCartItemCountSet={handleCartItemCountSet}
                     onRemoveIntoCart={handleRemoveIntoCart}
+                    onCartReset={handleCartReset}
                 />
             ) : (
                 <>

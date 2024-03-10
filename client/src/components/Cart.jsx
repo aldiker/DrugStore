@@ -2,7 +2,12 @@ import { useState } from 'react'
 import CartItem from './CartItem'
 import axios from 'axios'
 
-export default function Cart({ cart, onCartItemCountSet, onRemoveIntoCart }) {
+export default function Cart({
+    cart,
+    onCartItemCountSet,
+    onRemoveIntoCart,
+    onCartReset,
+}) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
@@ -26,6 +31,12 @@ export default function Cart({ cart, onCartItemCountSet, onRemoveIntoCart }) {
                 .post('http://localhost:3000/api/cart', formData)
                 .then((response) => {
                     console.log('Data submitted successfully:', response.data)
+                    onCartReset()
+                    setName('')
+                    setEmail('')
+                    setPhone('')
+                    setAddress('')
+
                     setStatusSubmit('submitSuccess')
                 })
                 .catch((error) => {
